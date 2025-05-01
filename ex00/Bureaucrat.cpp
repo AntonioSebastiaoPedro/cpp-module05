@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/01 23:25:13 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/01 23:41:41 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void Bureaucrat::addGrade( void )
 	if ( grade == 1 )
 		throw Bureaucrat::GradeTooHighException();
 	this->grade--;
+	std::cout << this->name << "\'s grade incremented\n";
 }
 
 void Bureaucrat::decreaseGrade( void )
@@ -81,6 +82,7 @@ void Bureaucrat::decreaseGrade( void )
 	if ( grade == 150 )
 		throw Bureaucrat::GradeTooLowException();
 	this->grade++;
+	std::cout << this->name << "\'s grade decremented\n";
 }
 
 std::ostream& operator<<( std::ostream& stream, const Bureaucrat& object )
