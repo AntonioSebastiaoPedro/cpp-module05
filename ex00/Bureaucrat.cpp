@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/01 23:03:23 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/01 23:25:13 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ Bureaucrat::Bureaucrat( void )
 
 Bureaucrat::Bureaucrat( std::string name, int grade )
 {
-	if ( !Bureaucrat::isValidGrade(grade) )
-		return ;
+	if ( grade > 150  ){
+		throw Bureaucrat::GradeTooLowException();
+	} else if ( grade < 1 ){
+		throw Bureaucrat::GradeTooHighException();
+	}
 	this->grade = grade;
 	this->name = name;
 }
 
 Bureaucrat::Bureaucrat( int grade )
 {
-	if ( !Bureaucrat::isValidGrade(grade) )
-		return ;
+	if ( grade > 150  ){
+		throw Bureaucrat::GradeTooLowException();
+	} else if ( grade < 1 ){
+		throw Bureaucrat::GradeTooHighException();
+	}
 	this->grade = grade;
 	this->name = "Ansebast";
 }
@@ -51,7 +57,6 @@ Bureaucrat& Bureaucrat::operator=( const Bureaucrat& other )
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor called\n";
 }
 
 std::string Bureaucrat::getName( void ) const
@@ -66,15 +71,15 @@ unsigned int Bureaucrat::getGrade( void ) const
 
 void Bureaucrat::addGrade( void )
 {
-	if ( !Bureaucrat::isValidGrade(grade) )
-		return ;
+	if ( grade == 1 )
+		throw Bureaucrat::GradeTooHighException();
 	this->grade--;
 }
 
 void Bureaucrat::decreaseGrade( void )
 {
-	if ( !Bureaucrat::isValidGrade(grade) )
-		return ;
+	if ( grade == 150 )
+		throw Bureaucrat::GradeTooLowException();
 	this->grade++;
 }
 
@@ -92,17 +97,4 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Value too low for the grade. Minimum allowed value is 150";
-}
-
-//====================UTILS===================
-bool Bureaucrat::isValidGrade( int grade )
-{
-	if ( grade > 150  ){
-		throw Bureaucrat::GradeTooLowException();
-		return (false);
-	} else if ( grade < 1 ){
-		throw Bureaucrat::GradeTooHighException();
-		return (false);
-	}
-	return (true);
 }

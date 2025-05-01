@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:19 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/01 23:05:25 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/01 23:16:28 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ class Bureaucrat
 	private:
 		std::string name;
 		unsigned int grade;
-		
-		bool isValidGrade( int grade );
 	public:
 		Bureaucrat( void );
 		Bureaucrat( const Bureaucrat& other );
