@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/01 23:41:41 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/02 06:49:37 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,22 @@ unsigned int Bureaucrat::getGrade( void ) const
 {
 	return (this->grade);
 }
+
+void Bureaucrat::setName( const std::string& name )
+{
+	this->name = name;
+}
+
+void Bureaucrat::setGrade( int grade )
+{
+	if ( grade > 150  ){
+		throw Bureaucrat::GradeTooLowException();
+	} else if ( grade < 1 ){
+		throw Bureaucrat::GradeTooHighException();
+	}
+	this->grade = grade;
+}
+
 
 void Bureaucrat::addGrade( void )
 {
