@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/03 17:42:02 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:51:24 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ void Bureaucrat::decreaseGrade( void )
 
 void Bureaucrat::signForm( Form& form )
 {
+	if ( form.getIsSigned() ) {
+		return ;
+	}
 	if ( form.beSigned(*this) ){
 		std::cout << this->name
 			<< " signed "

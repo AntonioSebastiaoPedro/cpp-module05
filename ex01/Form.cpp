@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 07:38:51 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/03 19:07:44 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:50:01 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,21 @@ void Form::setName( const std::string& name )
 
 void Form::setSignGrade( int grade )
 {
+	if ( grade > 150 ){
+		throw Form::GradeTooLowException();
+	} else if ( grade < 1 ){
+		throw Form::GradeTooHighException();
+	}
 	this->signGrade = grade;
 }
 
 void Form::setExecuteGrade( int grade )
 {
+	if ( grade > 150 ){
+		throw Form::GradeTooLowException();
+	} else if ( grade < 1 ){
+		throw Form::GradeTooHighException();
+	}
 	this->executeGrade = grade;
 }
 
@@ -110,16 +120,15 @@ const char* Form::GradeTooHighException::what() const throw()
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-	return "Value too low for the form grade. Minimum allowed value is 150";
+	return "Form grade is invalid (value > 150) OR Bureaucrat grade is too low for this action.";
 }
 
 std::ostream& operator<<( std::ostream& stream, const Form& form )
 {
-	stream << "\nForm Details: "
-		<< "\nName: " << form.getName()
-		<< "\nIs Sign: " << form.getIsSigned()
-		<< "\nSign Grade: " << form.getSignGrade()
-		<< "\nExecute Grade: " << form.getExecuteGrade()
-		<< std::endl;
+	stream << "Form Details: [Name: " << form.getName()
+		<< ", Signed: " << (form.getIsSigned() ? "Yes" : "No")
+		<< ", Grade to Sign: " << form.getSignGrade()
+		<< ", Grade to Execute: " << form.getExecuteGrade()
+		<< "]";
 	return (stream);
 }

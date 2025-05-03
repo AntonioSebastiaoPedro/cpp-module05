@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:31 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/03 19:32:44 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:54:05 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main( void )
 			Form promotion("Promotion Form", 50, 25);
 			john.signForm(promotion);
 			john.signForm(promotion);
+			std::cout << promotion << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
 		}
@@ -61,6 +62,7 @@ int	main( void )
 			Bureaucrat ana("Ana", 50);
 			Form mission("Mission Order", 50, 20);
 			ana.signForm(mission);
+			std::cout << mission << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
 		}
@@ -72,6 +74,7 @@ int	main( void )
 			Bureaucrat carl("Carl", 51);
 			Form mission("Mission Order", 50, 20);
 			carl.signForm(mission);
+			std::cout << mission << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
 		}
@@ -83,6 +86,7 @@ int	main( void )
 			Bureaucrat pedro("Pedro", 17);
 			Form mission("Mission Order", 18, 1);
 			pedro.signForm(mission);
+			std::cout << mission << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
@@ -96,7 +100,9 @@ int	main( void )
 			Form minorForm("Minor Request", 150, 150);
 
 			director.signForm(topSecret);
+			std::cout << topSecret << std::endl;
 			director.signForm(minorForm);
+			std::cout << minorForm << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
