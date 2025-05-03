@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/02 07:55:44 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/05/03 17:42:02 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,25 @@ void Bureaucrat::decreaseGrade( void )
 	std::cout << this->name << "\'s grade decremented\n";
 }
 
+void Bureaucrat::signForm( Form& form )
+{
+	if ( form.beSigned(*this) ){
+		std::cout << this->name
+			<< " signed "
+			<< form.getName()
+			<< std::endl;
+	} else {
+		std::cout << this->name
+		<< " couldn't sign "
+		<< form.getName()
+		<< " because the required grade is "
+		<< form.getSignGrade()
+		<< " and the " << this->name << "'s grade is "
+		<< this->grade
+		<< std::endl;
+	}
+}
+
 std::ostream& operator<<( std::ostream& stream, const Bureaucrat& object )
 {
 	stream << object.getName() << ", bureaucrat grade " << object.getGrade() << ".";
@@ -103,10 +122,10 @@ std::ostream& operator<<( std::ostream& stream, const Bureaucrat& object )
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Value too high for the grade. Maximum allowed value is 1";
+	return "Value too high for the bureaucrat grade. Maximum allowed value is 1";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Value too low for the grade. Minimum allowed value is 150";
+	return "Value too low for the bureaucrat grade. Minimum allowed value is 150";
 }
