@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 20:39:13 by ansebast          #+#    #+#              #
-#    Updated: 2025/05/30 09:39:13 by ansebast         ###   ########.fr        #
+#    Updated: 2025/08/19 23:32:13 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-# %.o: %.cpp $(HEADERS)
-# 	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJS): $(HEADERS)
 
 clean:
 	rm -rf $(OBJS)
