@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 07:38:51 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/03 19:50:01 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/20 00:25:51 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,6 @@ void Form::setIsSigned( bool value )
 
 bool Form::beSigned( const Bureaucrat& bureaucrat )
 {
-	if (bureaucrat.getGrade() > 150){
-		throw Form::GradeTooLowException();
-	}
 	if (bureaucrat.getGrade() <= this->signGrade){
 		this->isSigned = true;
 		return (true);
