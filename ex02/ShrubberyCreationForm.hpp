@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 09:03:47 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/30 09:27:45 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/20 02:06:13 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ class ShrubberyCreationForm : public virtual AForm
 		ShrubberyCreationForm();
 		ShrubberyCreationForm(const ShrubberyCreationForm& form);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& form);
-		ShrubberyCreationForm(const std::string& name, int signGrade, int executeGrade);
+		ShrubberyCreationForm(const std::string& name);
 		~ShrubberyCreationForm();
+		
+		void execute(Bureaucrat const & executor) const;
 };
 
 #endif

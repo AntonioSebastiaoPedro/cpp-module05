@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:31 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/30 09:47:38 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/20 02:30:03 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,126 +20,33 @@ void testHeader(const std::string &title) {
 
 int	main( void )
 {
-	testHeader("Teste 1: Bureaucrat's grade enough to sign the form");
+	testHeader("Test 1: Bureaucrat's grade enough to sign and execute the ShrubberyCreationForm");
 	{
 		try {
 			Bureaucrat ansebast(42);
-			AForm leaveRequest("Leave Request", 100, 50);
-			ansebast.signForm(leaveRequest);
-			std::cout << leaveRequest << std::endl;
+			ShrubberyCreationForm form1("home");
+			ansebast.signForm(form1);
+			form1.execute(ansebast);
+			std::cout << form1 << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
 	}
 	
-	testHeader("Teste 2: Bureaucrat's grade not enough to sign the form");
+	testHeader("Test 2: Bureaucrats trying to execute ShrubberyCreationForm that is not signed");
 	{
-		try {
-			Bureaucrat alice("Alice", 120);
-			AForm budget("Budget Approval", 100, 50);
-			alice.signForm(budget);
-			std::cout << budget << std::endl;
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
+		try
+		{
+			Bureaucrat ansebast(10);
+			ShrubberyCreationForm form1("office");
+			form1.execute(ansebast);
+			std::cout << form1 << std::endl;
 		}
-	}
-	
-	testHeader("Teste 3: Traying to sign the same form twice");
-	{
-		try {
-			Bureaucrat john("John", 10);
-			AForm promotion("Promotion Form", 50, 25);
-			john.signForm(promotion);
-			john.signForm(promotion);
-			std::cout << promotion << std::endl;
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
-		}
-	}
-	
-	testHeader("Teste 4: Bureaucrat's grade iqual to the form's grade");
-	{
-		try {
-			Bureaucrat ana("Ana", 50);
-			AForm mission("Mission Order", 50, 20);
-			ana.signForm(mission);
-			std::cout << mission << std::endl;
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
-		}
-	}
-	
-	testHeader("Teste 5: Bureaucrat's grade one point lower than required");
-	{
-		try {
-			Bureaucrat carl("Carl", 51);
-			AForm mission("Mission Order", 50, 20);
-			carl.signForm(mission);
-			std::cout << mission << std::endl;
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Caught: " << "\033[0m" << e.what() << std::endl;
-		}
-	}
-
-	testHeader("Teste 6: Bureaucrat's grade one point greater than required");
-	{
-		try {
-			Bureaucrat pedro("Pedro", 17);
-			AForm mission("Mission Order", 18, 1);
-			pedro.signForm(mission);
-			std::cout << mission << std::endl;
-		} catch (const std::exception &e) {
+		catch(const std::exception& e)
+		{
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
 	}
 	
-	testHeader("Teste 7: Bureaucrat's grade enough to sign all forms");
-	{
-		try {
-			Bureaucrat director("Director", 1);
-			AForm topSecret("Top Secret Doc", 1, 1);
-			AForm minorForm("Minor Request", 150, 150);
-
-			director.signForm(topSecret);
-			std::cout << topSecret << std::endl;
-			director.signForm(minorForm);
-			std::cout << minorForm << std::endl;
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
-		}
-	}
-	
-	testHeader("Teste 8: Invalid values to show exceptions messages");
-	{
-		try {
-			AForm f1("Invalid High", 1, 0);
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
-		}
-
-		try {
-			AForm f2("Invalid Low", 151, 10);
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
-		}
-		
-		try {
-			Bureaucrat b1("Invalid High", 0);
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
-		}
-
-		try {
-			Bureaucrat b1("Invalid Low", 151);
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
-		}
-
-		try {
-			Bureaucrat b1("Invalid Low", -1);
-		} catch (const std::exception &e) {
-			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
-		}
-	}
 	return (0);
 }
