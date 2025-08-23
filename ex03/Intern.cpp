@@ -14,21 +14,23 @@
 
 Intern::Intern()
 {
-
+	std::cout << "Intern default constructor called\n";
 }
 
 Intern::Intern(const Intern& other)
 {
+	std::cout << "Intern copy constructor called\n";
 	*this = other;
 }
 
 Intern& Intern::operator=(const Intern& other)
 {
+	std::cout << "Intern assign operator called\n";
 	if (this != &other) {}
 	return *this;
 }
 
 Intern::~Intern()
 {
-
+	std::cout << "Intern destructor called\n";
 }
