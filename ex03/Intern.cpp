@@ -34,3 +34,40 @@ Intern::~Intern()
 {
 	std::cout << "Intern destructor called\n";
 }
+
+AForm* createShrubberyCreationForm(const std::string& target)
+{
+	return new ShrubberyCreationForm(target);
+}
+
+AForm* createRobotomyRequestForm(const std::string& target)
+{
+	return new RobotomyRequestForm(target);
+}
+
+AForm* createPresidentialPardonForm(const std::string& target)
+{
+	return new PresidentialPardonForm(target);
+}
+
+AForm* Intern::makeForm(const std::string& name, const std::string& target)
+{
+	t_creatorForm forms[3] = {
+		{"shrubbery creation", &createShrubberyCreationForm},
+		{"robotomy request", &createRobotomyRequestForm},
+		{"presidential pardon", &createPresidentialPardonForm},
+	};
+
+	AForm* newForm;
+	for (size_t i = 0; i < 3; i++)
+	{
+		if (name == forms[i].nameForm) {
+			std::cout << "Intern creates " << name << std::endl;
+			newForm = forms[i].func(target);
+			return newForm;
+		}
+	}
+
+	std:: cout << "Form " << name << " does not exists. Please, give a valid name\n";
+	return NULL;
+}

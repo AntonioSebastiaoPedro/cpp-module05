@@ -13,6 +13,10 @@
 # ifndef INTERN_HPP
 # define INTERN_HPP
 
+# include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 # include <iostream>
 
 class Intern
@@ -22,7 +26,20 @@ class Intern
 		Intern(const Intern& other);
 		Intern& operator=(const Intern& other);
 		~Intern();
+
+		AForm* makeForm(const std::string& name, const std::string& target);
+		typedef AForm* (*creatorForm)(const std::string& target);
+
 };
 
+typedef struct s_creatorForm
+{
+	const std::string& nameForm;
+	AForm* (*func)(const std::string&);
+}	t_creatorForm;
+
+AForm* createShrubberyCreationForm(const std::string& target);
+AForm* createRobotomyRequestForm(const std::string& target);
+AForm* createPresidentialPardonForm(const std::string& target);
 
 # endif

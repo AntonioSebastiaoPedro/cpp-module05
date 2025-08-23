@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:31 by ansebast          #+#    #+#             */
-/*   Updated: 2025/08/23 18:24:05 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 21:04:04 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,66 @@ void testHeader(const std::string &title) {
 
 int	main( void )
 {
-	testHeader("Test: Bureaucrat's grade enough to sign and execute the ShrubberyCreationForm");
+	testHeader("Test: Intern creating a ShrubberyCreationForm");
 	{
-		Intern randomIntern;
-		Intern testAssign = randomIntern;
-		Intern testCopy (testAssign);
-		AForm *rrf;
+		try
+		{
+			Bureaucrat ansebast(9);
+			Intern someRandomIntern;
+			AForm* scf;
+			scf = someRandomIntern.makeForm("shrubbery creation", "Home");
+			ansebast.signForm(*scf);
+			ansebast.executeForm(*scf);
+			std::cout << *scf << std::endl;
+		} catch (const std::exception &e) {
+			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
+		}
+	}
 
-		(void)randomIntern;
-		(void)testAssign;
-		(void)testCopy;
-		(void)rrf;
+	testHeader("Test: Intern creating a RobotomyRequestForm");
+	{
+		try
+		{
+			Bureaucrat ansebast(12);
+			Intern someRandomIntern;
+			AForm* rrf;
+			rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+			ansebast.executeForm(*rrf);
+			std::cout << *rrf << std::endl;
+		} catch (const std::exception &e) {
+			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
+		}
 	}
 	
+	testHeader("Test: Intern creating a PresidentialPardonForm");
+	{
+		try
+		{
+			Bureaucrat ansebast(12);
+			Intern someRandomIntern;
+			AForm* ppf;
+			ppf = someRandomIntern.makeForm("presidential pardon", "42Luanda House");
+			ansebast.signForm(*ppf);
+			ansebast.executeForm(*ppf);
+			std::cout << *ppf << std::endl;
+		} catch (const std::exception &e) {
+			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
+		}
+	}
+
+	testHeader("Test: Form does not exists");
+	{
+		try
+		{
+			Intern someRandomIntern;
+			AForm* other;
+			other = someRandomIntern.makeForm("other form", "Impossible");
+			if (other)
+				std::cout << *other << std::endl;
+		} catch (const std::exception &e) {
+			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
+		}
+	}
+
 	return (0);
 }
