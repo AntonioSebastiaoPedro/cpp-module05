@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 07:38:45 by ansebast          #+#    #+#             */
-/*   Updated: 2025/08/23 11:46:36 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 21:21:29 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class AForm
 		AForm( const AForm& other );
 		AForm(const std::string& name, int signGrade, int executeGrade);
 		AForm& operator=( const AForm& other );
-		~AForm();
+		virtual ~AForm();
 
 		const std::string& getName( void ) const;
 		unsigned int getSignGrade( void ) const;

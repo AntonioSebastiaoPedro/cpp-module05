@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:31 by ansebast          #+#    #+#             */
-/*   Updated: 2025/08/23 21:04:04 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 21:22:50 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main( void )
 			ansebast.signForm(*scf);
 			ansebast.executeForm(*scf);
 			std::cout << *scf << std::endl;
+			delete scf;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
@@ -45,6 +46,7 @@ int	main( void )
 			rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 			ansebast.executeForm(*rrf);
 			std::cout << *rrf << std::endl;
+			delete rrf;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
@@ -61,6 +63,7 @@ int	main( void )
 			ansebast.signForm(*ppf);
 			ansebast.executeForm(*ppf);
 			std::cout << *ppf << std::endl;
+			delete ppf;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
