@@ -12,6 +12,8 @@
 
 # include "RobotomyRequestForm.hpp"
 # include <fstream>
+# include <stdlib.h>
+# include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm Default", 72, 45)
 {
@@ -48,5 +50,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw RobotomyRequestForm::GradeTooLowException();
 
+	std::cout << this->getName() << " is making some drilling noises" << std::endl;
+	srand(time(0));
+	int randNumber = rand() % 1000000;
+	if (randNumber % 2 == 0)
+		std::cout << this->getName() << " has been robotomized successfully" << std::endl;
+	else
+		std::cout << "Robotomy failed" << std::endl;
 }
