@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 09:24:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/08/20 02:25:18 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:47:22 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (!this->getIsSigned()) {
 		std::cerr << this->getName() << " ShrubberyCreationForm is not signed yet" << std::endl;
-		return ;
+		return false;
 	}
 	if (executor.getGrade() > this->getExecuteGrade()) {
 		throw ShrubberyCreationForm::GradeTooLowException();
@@ -80,4 +80,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	file << "             |__|                         " << std::endl;
 	
 	file.close();
+	return true;
 }
