@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 07:38:51 by ansebast          #+#    #+#             */
-/*   Updated: 2025/08/20 00:36:07 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:40:17 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,12 @@ const char* Form::GradeTooHighException::what() const throw()
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-	return "Form grade is invalid (value > 150) OR Bureaucrat grade is too low for this action.";
+	return "Form grade is invalid (value > 150 or value < 1) OR Bureaucrat grade is too low for this action.";
 }
 
 std::ostream& operator<<( std::ostream& stream, const Form& form )
 {
-	stream << "Form Details: [Name: " << form.getName()
+	stream << "Form: [Name: " << form.getName()
 		<< ", Signed: " << (form.getIsSigned() ? "Yes" : "No")
 		<< ", Grade to Sign: " << form.getSignGrade()
 		<< ", Grade to Execute: " << form.getExecuteGrade()
