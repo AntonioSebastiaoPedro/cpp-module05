@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:19 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/30 09:44:37 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:34:57 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Bureaucrat
 		void addGrade( void );
 		void decreaseGrade( void );
 		void signForm( AForm& form );
+		void executeForm(AForm const & form) const;
 		
 		class GradeTooHighException : public std::exception
 		{

@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:16 by ansebast          #+#    #+#             */
-/*   Updated: 2025/05/30 09:40:23 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:58:18 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,13 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Value too low for the bureaucrat grade. Minimum allowed value is 150";
+}
+
+void Bureaucrat::executeForm(AForm const & form) const
+{
+	if (!form.execute(*this)) {
+		std::cout << "Form " << form.getName() << " cannot be executed" << std::endl;
+		return ;
+	}
+	std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }
