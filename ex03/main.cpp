@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:07:31 by ansebast          #+#    #+#             */
-/*   Updated: 2025/08/23 21:22:50 by ansebast         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:34:06 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,16 @@ int	main( void )
 	
 	testHeader("Test: Intern creating a PresidentialPardonForm");
 	{
+		AForm* ppf;
 		try
 		{
 			Bureaucrat ansebast(12);
 			Intern someRandomIntern;
-			AForm* ppf;
 			ppf = someRandomIntern.makeForm("presidential pardon", "42Luanda House");
 			ansebast.signForm(*ppf);
 			ansebast.executeForm(*ppf);
-			std::cout << *ppf << std::endl;
-			delete ppf;
 		} catch (const std::exception &e) {
+			delete ppf;
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
 		}
 	}
@@ -76,7 +75,7 @@ int	main( void )
 			Intern someRandomIntern;
 			AForm* other;
 			other = someRandomIntern.makeForm("other form", "Impossible");
-			if (other)
+			if (other != NULL)
 				std::cout << *other << std::endl;
 		} catch (const std::exception &e) {
 			std::cerr << "\033[1;31m" << "Error: " << "\033[0m" << e.what() << std::endl;
